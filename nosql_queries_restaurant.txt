@@ -1,2 +1,17 @@
 Queries used to solve the questions for NoSQL
 
+Show an overview of the different documents
+> db.restaurants.find().limit(1)
+
+other queries:
+ - > db.restaurants.find({cuisine:{$ne:"American"},"grades.score":{$gt:70}});
+ - > db.restaurants.find({cuisine:{$ne:"American"},"grades.score":{$gt:70},"address.coord.0":{$lt: -65.754168}});
+ - > db.restaurants.find({"grades.score":{$gt:90}});
+ - > db.restaurants.find({borough:"Bronx",cuisine:{$in:["American","Chinese"]}}).count();
+ - > db.restaurants.find({borough:{$nin:["Staten Island","Queens","Bronxor Brooklyn"]}},{_id:0,restaurant_id:1,name:1,borough:1});
+ - > db.restaurants.find({borough:{$nin:["Staten Island","Queens","Bronxor Brooklyn"]}},{_id:0,restaurant_id:1,name:1,borough:1}).count();
+ - > db.restaurants.find({"grade.score":{$not:{$gt:10}}},{_id:0,restaurant_id:1,name:1,borough:1});
+ - > db.restaurants.find({"grade.score":{$not:{$gt:10}}},{_id:0,restaurant_id:1,name:1,borough:1}).count();
+ - > db.restaurants.find({grades:{$elemMatch:{grade:"A",score:"11",data:ISODate("2014-08-11T00:00:00Z")}}});
+ - > db.restaurants.find().sort({cuisine:1,borough:-1,}).limit(5);
+
